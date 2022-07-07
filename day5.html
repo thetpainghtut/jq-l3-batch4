@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5</title>
+</head>
+<body>
+    <h2>Effects</h2>
+    <p class="myp">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis, itaque quidem ab quia iure commodi odit temporibus, inventore incidunt quasi quod! Distinctio vitae eligendi explicabo reiciendis sunt temporibus atque unde!</p>
+
+    <div style="width: 100px; height: 100px; background-color: red; position: relative;" class="box">Box</div>
+
+    <button class="hide">Hide</button>
+    <button class="show">Show</button>
+    <button class="toggle">Toggle</button>
+
+    <button class="fadeout">fadeOut</button>
+    <button class="fadein">fadeIn</button>
+    <button class="fadetoggle">fadeToggle</button>
+    <button class="fadeto">fadeTo</button>
+
+    <button class="animate">Animate</button>
+
+    <!-- script -->
+    <script src="jquery.min.js"></script>
+    <script>
+        $(function () {
+            var myp = $(".myp")
+            var box = $(".box")
+            // hide show
+            $(".hide").on("click", function () {
+                myp.hide("fast");
+            })
+            $(".show").on("click", function () {
+                myp.show();
+            })
+            $(".toggle").on("click", function () {
+                myp.toggle();
+            })
+
+            // fade
+            $(".fadeout").on("click", function () {
+                myp.fadeOut();
+            })
+            $(".fadein").on("click", function () {
+                myp.fadeIn();
+            })
+            $(".fadetoggle").on("click", function () {
+                myp.fadeToggle();
+            })
+            $(".fadeto").on("click", function () {
+                box.fadeTo("slow", 0.4);
+            })
+
+            // Sliding
+
+            // Animation
+            $(".animate").on("click", function () {
+                box.animate({
+                    left: '250px'
+                });
+            })
+        })
+    </script>
+</body>
+</html>

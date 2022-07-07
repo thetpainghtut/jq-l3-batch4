@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2 - Selectors</title>
+</head>
+<body>
+    <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. In accusantium totam quae quasi unde temporibus alias sed repudiandae sit. Dignissimos provident enim, libero praesentium quis ipsa? Commodi minus necessitatibus dolore!
+    </p>
+    <p class="mname">this is second p tag</p>
+    <h2 class="mname">Thet Paing Htut</h2>
+    <h2 class="mname">Ko Thet</h2>
+
+    <button id="mybtn">Click Me</button>
+
+    <ul>
+        <li>first year</li>
+        <li>second year</li>
+        <li>third year</li>
+    </ul>
+
+    <section id="contents">
+        <ul class="people">
+            <li>Mg Mg</li>
+            <li>Su Su</li>
+            <li>Ko Ko</li>
+        </ul>
+    </section>
+
+    <!-- <form action="">
+        <input type="text" name="" id="">
+    </form> -->
+    
+
+    <script src="jquery.min.js"></script>
+    <script>
+        $(function () {
+            // Element Selector
+            var p = $("p");
+            console.log(p);
+
+            // class selector
+            var c = $(".mname")
+            console.log(c)
+
+            // id selector
+            var d = $("#mybtn")
+            console.log(d)
+            if(d.length){
+                console.log("Have Button")
+            }
+
+            // with element & class
+            var ec = $("h2.mname")
+            console.log(ec)
+
+            // first li of first ul
+            var f = $("ul li:first")
+            console.log(f)
+
+            // parent child selector
+            var pc = $("#contents ul.people li")
+            console.log(pc)
+
+            // Filtering
+
+            // working with form
+        })
+    </script>
+</body>
+</html>

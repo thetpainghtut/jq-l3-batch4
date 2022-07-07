@@ -1,0 +1,19 @@
+JavaScript
+===========
+- Variables
+- Expressions
+- DOM
+- Looping
+- Array / Object
+- Function
+- Condition
+
+CSS
+===
+- Styling
+
+Web Development
+- Frontend 
+    - design(HMTL, CSS, JS) / manipulation (JS) / 
+- Backend
+    - System Flow / Database / API

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 6</title>
+    <!-- <style>
+        .active {
+            color: red;
+            font-size: 20px;
+        }
+    </style> -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p class="myp">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod voluptatem, ducimus numquam repudiandae ullam, accusantium obcaecati, rerum dicta nam dolorum officiis! Adipisci sequi minima, id provident vitae veritatis repudiandae atque.
+    </p>
+    <button class="addbtn">Add</button>
+    <button class="removebtn">Remove</button>
+
+    <a href="http://google.com" class="mya">Google</a>
+    <button class="change">Change</button>
+
+    <form action="">
+        <input type="number" name="total" id="total"><br>
+        <input type="number" name="pay" id="pay"><br>
+        <input type="number" name="change" id="change"><br>
+        <input type="submit" value="Ok">
+    </form>
+
+    <!-- script -->
+    <script src="jquery.min.js"></script>
+    <script>
+        $(function () {
+            // var colors = new Array();
+            // colors.push("red")
+            // var student = {
+            //     name: 'Thet Paing Htut',
+            //     age: 27,
+            // }
+            // colors.push(student);
+            // console.log(colors)
+
+            $(".addbtn").on("click",function () {
+                var myp = $(".myp")
+                // myp.css({
+                //     // color: "red",
+                //     fontSize: "20px"
+                // });
+                myp.addClass("active")
+            })
+
+            $(".removebtn").on("click",function () {
+                var myp = $(".myp")
+                // myp.css({
+                //     color: "red",
+                //     fontSize: 20
+                // });
+                myp.removeClass("active")
+            })
+
+            $(".change").on("click",function () {
+                var mya = $(".mya")
+                var href = mya.attr('href')
+                console.log(href)
+                mya.attr('href', 'http://facebook.com')
+                href = mya.attr('href')
+                console.log(href)
+                // mya.text('Facebook')
+                mya.html('<i>Facebook</i>')
+            })
+
+            $("input[name=change]").on("focus",function () {
+                var total = $("input[name=total]").val()
+                var pay = $("input[name=pay]").val()
+                var change = pay-total
+                $(this).val(change)
+            })
+        })
+    </script>
+</body>
+</html>
