@@ -21,8 +21,10 @@ $(function () {
             var itemArr = JSON.parse(cartStr) 
         }
         itemArr.push(item); // 
+        // Please try here!
         
         localStorage.setItem('cart', JSON.stringify(itemArr));
+        getData()
     })
 
     function getData(){
@@ -32,7 +34,23 @@ $(function () {
         if(!cartStr){
             data += `Your Cart is Empty!`;
         }else{
-            data += `Show items here!`
+            var cartArr = JSON.parse(cartStr);
+            var total=0;
+            $.each(cartArr, function (i,v) {
+                total += v.qty*v.price;
+
+                data += `<tr>
+                        <td>${i}</td>
+                        <td>${v.name}</td>
+                        <td>${v.price}</td>
+                        <td>${v.qty}</td>
+                        <td>${v.qty*v.price}</td>
+                        </tr>`
+            })
+            data += `<tr>
+                    <td colspan="4">Total</td>
+                    <td>${total}</td>
+                </tr>`
         }
 
         $("#cartitems").html(data);
