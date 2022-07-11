@@ -20,8 +20,19 @@ $(function () {
         }else{
             var itemArr = JSON.parse(cartStr) 
         }
-        itemArr.push(item); // 
-        // Please try here!
+
+        var status = false;
+        $.each(itemArr,function (i,v) {
+            if(v.id == id){
+                v.qty++;
+                status = true;
+                return false;
+            }
+        })
+
+        if(status == false){
+            itemArr.push(item);
+        }
         
         localStorage.setItem('cart', JSON.stringify(itemArr));
         getData()
@@ -29,30 +40,43 @@ $(function () {
 
     function getData(){
         var cartStr = localStorage.getItem('cart');
-        var data="";
-
         if(!cartStr){
-            data += `Your Cart is Empty!`;
+            var data = `<h2 style="text-align: center;">Your Cart is Empty!</h2>`;
+            $(".mytable").hide();
+            $(".mycart").show();
+            $(".mycart").html(data);
         }else{
+            var body;
             var cartArr = JSON.parse(cartStr);
             var total=0;
             $.each(cartArr, function (i,v) {
                 total += v.qty*v.price;
-
-                data += `<tr>
-                        <td>${i}</td>
+                let id = ++i;
+                body += `<tr>
+                        <td>
+                            ${id}
+                            <button class="delebtn">X</button>
+                        </td>
                         <td>${v.name}</td>
                         <td>${v.price}</td>
-                        <td>${v.qty}</td>
+                        <td>
+                        <button class="minbtn">-</button>
+                        ${v.qty}
+                        <button class="maxbtn">+</button>
+                        </td>
                         <td>${v.qty*v.price}</td>
                         </tr>`
             })
-            data += `<tr>
+            body += `<tr>
                     <td colspan="4">Total</td>
                     <td>${total}</td>
                 </tr>`
+
+            $(".mycart").hide();
+            $("#cartitems").html(body);
+            $(".mytable").show();
         }
 
-        $("#cartitems").html(data);
+        
     }
 })
