@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+<body>
+    <a href="images/countries.jpg" rel="noopener noreferrer" download>
+        Download File
+    </a>
+
+    <script src="jquery.min.js"></script>
+    <script>
+        $(function () {
+            var colors = ['red', 'green', 'blue']; // index array
+            console.log(colors);
+            colors.push('white');
+            console.log(colors);
+            var lastcolor = colors.pop();
+            console.log(lastcolor)
+            console.log(colors);
+
+            // In JS
+                // for
+                // while / do --- while
+            for (const iterator of colors) {
+                console.log(iterator)
+            }
+
+            // In JQ
+            $.each(colors,function (i,v) {
+                console.log(v)
+            })
+
+            // Array of Object
+            var students = [
+                {
+                    name: 'mgmg', 
+                    age: 22, 
+                    gender: 'male',
+                    parents: [{father: 'U Mya'}, {mother: 'Daw Nu'}]
+                },
+                {name: 'susu', age: 23, gender: 'female'},
+                {name: 'warwar', age: 21, gender: 'female'},
+                {name: 'koko', age: 25, gender: 'male'},
+            ]
+
+            console.log(students);
+
+            $.each(students,function (i,v) {
+                console.log(v.name)
+                if(v.parents){
+                    console.log(v.parents)
+                }
+            })
+        })
+    </script>
+</body>
+</html>

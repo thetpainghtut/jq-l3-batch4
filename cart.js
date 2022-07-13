@@ -18,7 +18,7 @@ $(function () {
         if(!cartStr){
             var itemArr = new Array(); // first time
         }else{
-            var itemArr = JSON.parse(cartStr) 
+            var itemArr = JSON.parse(cartStr) // string to array 
         }
 
         var status = false;
@@ -34,7 +34,7 @@ $(function () {
             itemArr.push(item);
         }
         
-        localStorage.setItem('cart', JSON.stringify(itemArr));
+        localStorage.setItem('cart', JSON.stringify(itemArr)); // array to string
         getData()
     })
 
@@ -51,7 +51,7 @@ $(function () {
             var total=0;
             $.each(cartArr, function (i,v) {
                 total += v.qty*v.price;
-                let id = ++i;
+                let id = i+1;
                 body += `<tr>
                         <td>
                             ${id}
@@ -60,16 +60,16 @@ $(function () {
                         <td>${v.name}</td>
                         <td>${v.price}</td>
                         <td>
-                        <button class="minbtn">-</button>
+                        <button class="minbtn" data-index="${i}">-</button>
                         ${v.qty}
-                        <button class="maxbtn">+</button>
+                        <button class="maxbtn" data-index="${i}">+</button>
                         </td>
                         <td>${v.qty*v.price}</td>
                         </tr>`
             })
             body += `<tr>
                     <td colspan="4">Total</td>
-                    <td>${total}</td>
+                    <td>${numberFormat(total)}</td>
                 </tr>`
 
             $(".mycart").hide();
@@ -78,5 +78,39 @@ $(function () {
         }
 
         
+    }
+
+    // Decrease Qty
+    $("#cartitems").on("click",".minbtn",function () {
+        var index = $(this).data('index');
+        var cartStr = localStorage.getItem('cart');
+        var cartArr = JSON.parse(cartStr);
+        if(cartArr[index].qty>1){
+            cartArr[index].qty--;
+        }else{
+            var status = confirm("Are you sure to Delete?");
+           if(status == true){
+            // delete that row
+            cartArr.splice(index,1);
+           }
+        }
+        // console.log(cartArr[index])
+        localStorage.setItem('cart', JSON.stringify(cartArr));
+        getData()
+    })
+
+    // Increase Qty
+    $("#cartitems").on("click",".maxbtn",function () {
+        var index = $(this).data('index');
+        var cartStr = localStorage.getItem('cart');
+        var cartArr = JSON.parse(cartStr);
+        cartArr[index].qty++;
+        // console.log(cartArr[index])
+        localStorage.setItem('cart', JSON.stringify(cartArr));
+        getData()
+    })
+
+    function numberFormat(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 })
